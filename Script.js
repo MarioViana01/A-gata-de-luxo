@@ -303,7 +303,49 @@ if (newsletterForm) {
 }
 
 // ==========================================================================
-// 10. INICIALIZAÇÃO
+// 10. INICIALIZAÇÃO TELA LOGIN/CADASTRO
 // ==========================================================================
 renderProducts();
 renderCart();
+
+// NOTA EXPLICATIVA: Exemplo de rotas de uma API simples para o seu sistema
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+// ROTA DE CADASTRO
+app.post('/api/cadastro', (req, res) => {
+    const { nome, email, contato, senha, endereco } = req.body;
+    // Aqui você validaria os dados e salvaria no Banco de Dados (Ex: MySQL, MongoDB)
+    return res.status(201).json({ mensagem: "Usuário criado com sucesso!" });
+});
+
+// ROTA DE LOGIN
+app.post('/api/login', (req, res) => {
+    const { email, senha } = req.body;
+    // Aqui você buscaria o usuário no banco e checaria se a senha está correta
+    return res.status(200).json({ token: "TOKEN_JWT_DE_SESSAO" });
+});
+
+// ROTA DE RECUPERAÇÃO DE SENHA
+app.post('/api/recuperar-senha', async (req, res) => {
+    const { email } = req.body;
+
+    // 1. Procurar o e-mail no banco de dados
+    // const usuario = await BancoDeDados.buscarPorEmail(email);
+    // if (!usuario) return res.status(404).json({ erro: "E-mail não encontrado" });
+
+    // 2. Gerar um token único aleatório e seguro
+    const tokenRecuperacao = Math.random().toString(36).substring(2) + Date.now().toString(36);
+    
+    // 3. Salvar o token no banco atrelado ao usuário com um tempo de expiração (Ex: 1 hora)
+    // await BancoDeDados.salvarTokenRecuperacao(usuario.id, tokenRecuperacao, dataExpiracao);
+
+    // 4. Montar o link que o usuário vai clicar
+    const linkDeRecuperacao = `https://seusite.com{tokenRecuperacao}`;
+
+    // 5. Enviar o e-mail usando alguma biblioteca (ex: Nodemailer)
+    console.log(`E-mail enviado para ${email} com o link: ${linkDeRecuperacao}`);
+
+    return res.status(200).json({ mensagem: "Se o e-mail existir, o link foi enviado!" });
+});

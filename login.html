@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso ao Sistema</title>
+    <style>
+        /* Estilos básicos e limpos para centralizar os formulários */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        .form-screen {
+            display: none; /* Esconde as telas por padrão */
+        }
+        .form-screen.active {
+            display: block; /* Mostra apenas a tela ativa */
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-link {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    
+    <!-- TELA DE LOGIN -->
+    <div id="screen-login" class="form-screen active">
+        <h2>Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="login-senha" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="#" class="toggle-link" onclick="switchScreen('screen-cadastro')">Criar uma conta</a>
+        <a href="#" class="toggle-link" onclick="switchScreen('screen-recuperar')">Esqueci minha senha</a>
+    </div>
+
+    <!-- TELA DE CADASTRO -->
+    <div id="screen-cadastro" class="form-screen">
+        <h2>Cadastro</h2>
+        <form onsubmit="handleCadastro(event)">
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" id="cad-nome" required>
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" id="cad-email" required>
+            </div>
+            <div class="form-group">
+                <label>Número de Contato</label>
+                <input type="tel" id="cad-contato" placeholder="(00) 00000-0000" required>
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="cad-senha" required>
+            </div>
+            
+            <!-- Endereço Completo -->
+            <h3>Endereço</h3>
+            <div class="row">
+                <div class="form-group" style="flex: 2;">
+                    <label>CEP</label>
+                    <input type="text" id="cad-cep" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Número</label>
+                    <input type="text" id="cad-numero" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Rua</label>
+                <input type="text" id="cad-rua" required>
+            </div>
+            <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" id="cad-bairro" required>
+            </div>
+            <div class="row">
+                <div class="form-group" style="flex: 2;">
+                    <label>Cidade</label>
+                    <input type="text" id="cad-cidade" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Estado (UF)</label>
+                    <input type="text" id="cad-estado" maxlength="2" required>
+                </div>
+            </div>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <a href="#" class="toggle-link" onclick="switchScreen('screen-login')">Já tenho conta (Login)</a>
+    </div>
+
+    <!-- TELA DE RECUPERAÇÃO DE SENHA -->
+    <div id="screen-recuperar" class="form-screen">
+        <h2>Recuperar Senha</h2>
+        <p style="font-size: 14px; color: #666;">Insira seu e-mail cadastrado. Enviaremos um link seguro para você redefinir sua senha.</p>
+        <form onsubmit="handleRecuperar(event)">
+            <div class="form-group">
+                <label>E-mail Cadastrado</label>
+                <input type="email" id="rec-email" required>
+            </div>
+            <button type="submit">Enviar Link de Recuperação</button>
+        </form>
+        <a href="#" class="toggle-link" onclick="switchScreen('screen-login')">Voltar para o Login</a>
+    </div>
+
+</div>
+
+<script>
+    // NOTA EXPLICATIVA: Função simples para alternar visibilidade das telas
+    function switchScreen(screenId) {
+        document.querySelectorAll('.form-screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+        document.getElementById(screenId).add('active');
+    }
+
+    // NOTA EXPLICATIVA: Simulação do envio de dados de Login para a API
+    async function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const senha = document.getElementById('login-senha').value;
+
+        console.log("Enviando para API de Login:", { email, senha });
+        alert("Login efetuado com sucesso! (Simulação)");
+    }
+
+    // NOTA EXPLICATIVA: Coleta os dados digitados e simula a criação do usuário na API
+    async function handleCadastro(event) {
+        event.preventDefault();
+        const dadosUsuario = {
+            nome: document.getElementById('cad-nome').value,
+            email: document.getElementById('cad-email').value,
+            contato: document.getElementById('cad-contato').value,
+            senha: document.getElementById('cad-senha').value,
+            endereco: {
+                cep: document.getElementById('cad-cep').value,
+                numero: document.getElementById('cad-numero').value,
+                rua: document.getElementById('cad-rua').value,
+                bairro: document.getElementById('cad-bairro').value,
+                cidade: document.getElementById('cad-cidade').value,
+                estado: document.getElementById('cad-estado').value
+            }
+        };
+
+        console.log("Enviando para API de Cadastro:", dadosUsuario);
+        alert("Cadastro realizado com sucesso! (Simulação)");
+        switchScreen('screen-login');
+    }
+
+    // NOTA EXPLICATIVA: Dispara o pedido de recuperação para o servidor backend
+    async function handleRecuperar(event) {
+        event.preventDefault();
+        const email = document.getElementById('rec-email').value;
+
+        console.log("Solicitando link de recuperação para:", email);
+        
+        // Exemplo de requisição real utilizando fetch:
+        /*
+        const response = await fetch('http://suaapi.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+        */
+
+        alert(`Se o e-mail ${email} estiver em nossa base, um link de redefinição será enviado em instantes!`);
+    }
+</script>
+</body>
+</html>
