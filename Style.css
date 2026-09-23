@@ -1,0 +1,580 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE CORES E PALETA DA MARCA
+   ========================================================================== */
+:root {
+  /* Tons do Banner / Identidade Visual */
+  --bg-cream: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --ink: #1C1B17;
+  --ink-muted: #666059;
+  
+  /* Paleta Lilás e Roxo */
+  --lilas-brilho: #E8A2F2;
+  --lilas-medio: #C86FD2;
+  --roxo-vivido: #823B8B;
+  --roxo-profundo: #3B0B3F;
+  --bg-roxo-escuro: #210226;
+
+  /* Paleta Dourada */
+  --gold-brilhante: #F1D688;
+  --gold-principal: #D2A74E;
+  --gold-sombra: #8C6520;
+
+  /* Cores de Ação e Destaque Monetário */
+  --green-pix: #00A86B;
+  --border-light: #E8E4DE;
+
+  /* Tipografia */
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Manrope', sans-serif;
+}
+
+/* ==========================================================================
+   2. RESET E ESTILOS GERAIS
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   3. CABEÇALHO DO SITE
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-img {
+  height: 72px;
+  width: auto;
+}
+
+.main-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.main-nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--roxo-vivido);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  color: var(--ink);
+}
+
+.cart-count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  background-color: var(--roxo-vivido);
+  color: #FFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background-color: var(--ink);
+}
+
+/* ==========================================================================
+   4. BANNER / HERO
+   ========================================================================== */
+.banner-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-roxo-escuro);
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   5. FILTROS E GRADE DE PRODUTOS
+   ========================================================================== */
+.filters {
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 0 24px;
+}
+
+.filters h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--border-light);
+  background-color: #FFF;
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+
+.tab.active, .tab:hover {
+  background-color: var(--roxo-profundo);
+  color: var(--gold-brilhante);
+  border-color: var(--roxo-profundo);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+/* Card do Produto */
+.product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.product-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--bg-roxo-escuro);
+  margin-bottom: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.product-material {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   6. BLOCO DE PREÇOS PROMOCIONAIS (PIX + PARCELAMENTO)
+   ========================================================================== */
+.product-pricing {
+  margin: 14px 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+/* 1. Linha com Preço Anterior + Preço Atual */
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+}
+
+/* Preço antigo riscado */
+.price-old {
+  text-decoration: line-through;
+  color: #8C8C8C;
+  font-size: 0.95rem;
+}
+
+/* Divisora vertical */
+.price-divider {
+  color: #D3D3D3;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+/* Preço atual com desconto */
+.price-current {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* 2. Destaque do Pagamento no PIX */
+.price-pix {
+  font-size: 0.92rem;
+  color: var(--green-pix);
+  font-weight: 500;
+}
+
+.price-pix strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* 3. Caixa de Parcelamento em 10x no Cartão */
+.price-installments {
+  display: inline-block;
+  border: 1px solid var(--green-pix);
+  color: var(--green-pix);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 2px;
+  margin-top: 4px;
+  width: fit-content;
+}
+
+.price-installments strong {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   7. BOTÕES E COMPONENTES
+   ========================================================================== */
+.btn-primary {
+  background-color: var(--ink);
+  color: #FFF;
+  padding: 12px 20px;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background-color: var(--roxo-profundo);
+  color: var(--gold-brilhante);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   8. SEÇÃO INSTITUCIONAL / O OFÍCIO
+   ========================================================================== */
+.oficio {
+  background-color: var(--bg-roxo-escuro);
+  color: #FFF;
+  padding: 64px 24px;
+}
+
+.oficio-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.oficio h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  text-align: center;
+  color: var(--gold-brilhante);
+  margin-bottom: 48px;
+}
+
+.process-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.process-list li {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.process-num {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--gold-principal);
+  border: 1px solid var(--gold-principal);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.process-list h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--lilas-brilho);
+  margin-bottom: 6px;
+}
+
+.process-list p {
+  color: #E0D6E5;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   9. NEWSLETTER
+   ========================================================================== */
+.newsletter {
+  padding: 64px 24px;
+  text-align: center;
+  background-color: #FFF;
+  border-top: 1px solid var(--border-light);
+}
+
+.newsletter-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.newsletter p {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   10. RODAPÉ
+   ========================================================================== */
+.site-footer {
+  background-color: var(--bg-cream);
+  border-top: 1px solid var(--border-light);
+  padding: 48px 24px 24px;
+  font-size: 0.9rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.footer-inner h4 {
+  font-family: var(--font-heading);
+  margin-bottom: 12px;
+}
+
+.footer-inner .logo {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.footer-copy {
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border-light);
+  padding-top: 24px;
+}
+
+/* ==========================================================================
+   11. GAVETA / PAINEL DO CARRINHO
+   ========================================================================== */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background-color: #FFF;
+  z-index: 1001;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.active {
+  transform: translateX(0);
+}
+
+.cart-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+}
+
+#closeCart {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.cart-footer {
+  padding: 24px;
+  border-top: 1px solid var(--border-light);
+  background-color: var(--bg-cream);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   12. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+}

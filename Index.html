@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A gata de luxo — Joias - Semijoias - Bijuterias</title>
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Folha de Estilos CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO DO SITE -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Logo com link para retorno à página inicial -->
+      <a href="#topo" class="logo-link">
+        <img src="imagens/logo oficial.png" alt="Logo A Gata de Luxo" class="logo-img">
+      </a>
+      
+      <!-- Navegação Principal -->
+      <nav class="main-nav" id="mainNav">
+        <a href="#colecao">Coleção</a>
+        <a href="#oficio">O ofício</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      
+      <!-- Ações do Cabeçalho (Carrinho e Menu Mobile) -->
+      <div class="header-actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M4 7h16l-1.5 11.5a2 2 0 0 1-2 1.5H7.5a2 2 0 0 1-2-1.5L4 7z"/>
+            <path d="M8 7V5a4 4 0 0 1 8 0v2"/>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="topo">
+
+    <!-- SEÇÃO HERO / BANNER PRINCIPAL (LARGURA TOTAL) -->
+    <section class="banner-container">
+      <img src="imagens/banner atualizado oficial 01.jpg" alt="Banner Oficial A Gata de Luxo" class="banner-img">
+    </section>
+
+    <!-- SEÇÃO DE CATÁLOGOS E FILTROS DE PRODUTOS -->
+    <section class="filters" id="colecao">
+      <h2>Coleção</h2>
+      <div class="filter-tabs" id="filterTabs">
+        <button class="tab active" data-filter="todos">Todos</button>
+        <button class="tab" data-filter="aneis">Anéis</button>
+        <button class="tab" data-filter="colares">Colares</button>
+        <button class="tab" data-filter="brincos">Brincos</button>
+        <button class="tab" data-filter="pulseiras">Pulseiras</button>
+      </div>
+      
+      <!-- Grade dinâmica de produtos inseridos via JS -->
+      <div class="product-grid" id="productGrid">
+        <!-- 
+          O JavaScript (script.js) renderizará os cards aqui.
+          Estrutura gerada para cada produto com o novo bloco de preços:
+          
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="caminho/imagem.jpg" alt="Anel Vértice">
+            </div>
+            <h3>Anel Vértice</h3>
+            <p class="product-material">Ouro 18k, safira azul</p>
+            
+            <div class="product-pricing">
+              <div class="price-row">
+                <span class="price-old">R$ 4.100,00</span>
+                <span class="price-divider">|</span>
+                <span class="price-current">R$ 3.480,00</span>
+              </div>
+              <div class="price-pix">
+                <strong>R$ 3.306,00</strong> com Pix
+              </div>
+              <div class="price-installments">
+                <strong>10x</strong> de <strong>R$ 348,00</strong> sem juros
+              </div>
+            </div>
+
+            <button class="btn-primary btn-block">Adicionar à sacola</button>
+          </div>
+        -->
+      </div>
+    </section>
+
+    <!-- SEÇÃO INSTITUCIONAL / PROCESSO DE FABRICAÇÃO -->
+    <section class="oficio" id="oficio">
+      <div class="oficio-inner">
+        <h2>Do metal bruto à peça final</h2>
+        <ol class="process-list">
+          <li>
+            <span class="process-num">1</span>
+            <div>
+              <h3>Fundição</h3>
+              <p>O ouro e a prata são fundidos e moldados na forma bruta de cada desenho, ainda sem vida.</p>
+            </div>
+          </li>
+          <li>
+            <span class="process-num">2</span>
+            <div>
+              <h3>Lapidação</h3>
+              <p>As pedras são cortadas e polidas à mão, uma face de cada vez, até capturarem a luz do jeito certo.</p>
+            </div>
+          </li>
+          <li>
+            <span class="process-num">3</span>
+            <div>
+              <h3>Acabamento</h3>
+              <p>Cravação, polimento final e conferência — a etapa que decide se a peça está pronta para sair do ateliê.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SEÇÃO NEWSLETTER -->
+    <section class="newsletter">
+      <div class="newsletter-inner">
+        <h2>Receba os lançamentos antes de todo mundo</h2>
+        <p>Sem spam — só um aviso quando a nova coleção for lançada.</p>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="seu@email.com" required>
+          <button type="submit" class="btn-primary">Quero receber</button>
+        </form>
+        <p class="newsletter-msg" id="newsletterMsg"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ DO SITE -->
+  <footer class="site-footer" id="contato">
+    <div class="footer-inner">
+      <div>
+        <p class="logo">A gata de luxo</p>
+        <p>loja de joias, semi joias e bijuterias.<br>Maceió-AL</p>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <p>contato@agatadeluxo.com.br<br>(82) 4002-8922</p>
+      </div>
+      <div>
+        <h4>Loja</h4>
+        <p>Faça seu pedido<br>Enviamos em 24h</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 A gata de luxo. Peças de qualidade.</p>
+  </footer>
+
+  <!-- GAVETA / PAINEL DO CARRINHO DE COMPRAS -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Sua sacola</h2>
+      <button id="closeCart" aria-label="Fechar carrinho">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">R$ 0,00</span>
+      </div>
+      <button class="btn-primary btn-block" id="checkoutBtn">Finalizar pedido</button>
+    </div>
+  </aside>
+
+  <!-- JAVASCRIPT PRINCIPAL -->
+  <script src="script.js"></script>
+</body>
+</html>
